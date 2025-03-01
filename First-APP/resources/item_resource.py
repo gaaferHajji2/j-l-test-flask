@@ -1,17 +1,17 @@
-from flask import abort;
+from flask import abort
 
-from flask.views import MethodView;
+from flask.views import MethodView
 
 from flask_smorest import Blueprint;
 
-from flask_jwt_extended import jwt_required, get_jwt;
+from flask_jwt_extended import jwt_required, get_jwt
 
-from models import ItemModel;
+from models import ItemModel
 
-from schemas_shape import ItemSchema;
-from schemas_shape import ItemUpdateSchema;
+from schemas_shape import ItemSchema
+from schemas_shape import ItemUpdateSchema
 
-item_blueprint = Blueprint("Item", __name__, description= "The Item's Requests");
+item_blueprint = Blueprint("Item", __name__, description= "The Item's Requests")
 
 @item_blueprint.route('/item/<int:item_id>')
 class ItemResource(MethodView):
