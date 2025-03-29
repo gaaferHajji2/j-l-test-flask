@@ -31,6 +31,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+
 def create_app(db_url=None):
     app =Flask(__name__)
 
