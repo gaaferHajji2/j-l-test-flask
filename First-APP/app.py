@@ -110,12 +110,12 @@ def create_app(db_url=None):
     # not working
     # @app.before_first_request
     # def create_tables():
-    #     db.create_all();
+    #     db.create_all()
 
     # Here we use flask-migrate to generate the
     # db, so we don't need this lines any more.
     # with app.app_context():
-    #     db.create_all();
+    #     db.create_all()
 
     api.register_blueprint(store_blueprint)
 
