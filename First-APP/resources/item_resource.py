@@ -39,7 +39,7 @@ class ItemResource(MethodView):
         jwt = get_jwt()
 
         if not jwt.get("admin"):
-            abort(403, description=f"Only Admins Can Access This Route")
+            abort(403, description="Only Admins Can Access This Route")
 
         item_data = ItemModel.get_item_by_id(item_id)
 
