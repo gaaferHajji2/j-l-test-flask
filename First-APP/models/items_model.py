@@ -1,4 +1,4 @@
-from sqlalchemy import desc
+# from sqlalchemy import desc
 from db import db
 
 # The Column.default and Column.onupdate keyword 
