@@ -12,7 +12,6 @@ from schemas_shape import ItemSchema
 from schemas_shape import ItemUpdateSchema
 
 item_blueprint = Blueprint("Item", __name__, description= "The Item's Requests")
-
 @item_blueprint.route('/item/<int:item_id>')
 class ItemResource(MethodView):
     @item_blueprint.response(status_code=200, schema=ItemSchema)
@@ -35,6 +34,7 @@ class ItemResource(MethodView):
         return item
 
     @jwt_required()
+    @item_blueprint.response(status_code=204)
     def delete(self, item_id):
         jwt = get_jwt()
 
@@ -46,7 +46,6 @@ class ItemResource(MethodView):
         item_data.delete_item_from_db()
 
         return {
-            "status": True,
             "msg": "Data Deleted Successfully"
         }
 
