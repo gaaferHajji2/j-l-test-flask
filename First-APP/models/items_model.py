@@ -13,7 +13,7 @@ class ItemModel(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
 
-    name = db.Column(db.String(80), unique=True, index=True, nullable=False)
+    name = db.Column(db.String(80), index=True, nullable=False)
 
     price = db.Column(db.Float(precision=2), nullable=False)
 
@@ -30,6 +30,10 @@ class ItemModel(db.Model):
         'TagModel', 
         back_populates='items', 
         secondary='items_tags',
+    )
+
+    __table_args__ = (
+        db.UniqueConstraint('name', 'store_id', name="item_name_store_id_uc"),
     )
 
     def add_item_data_to_db(self):
