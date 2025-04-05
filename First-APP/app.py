@@ -56,7 +56,7 @@ def create_app(db_url=None):
 
     db.init_app(app=app)
 
-    conn = redis.from_url(os.getenv('REDIS_URL'))
+    conn = redis.from_url(os.getenv('REDIS_URL') or 'redis://localhost:9379')
 
     app.queue = Queue("emails", connection=conn)
 
