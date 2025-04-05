@@ -128,9 +128,14 @@ def create_app(db_url=None):
     @app.errorhandler(404)
     def get_not_found(error):
         return {
-            "status": False,
             "message": error.description
         }, 404
+    
+    @app.errorhandler(500)
+    def ise_handler(error):
+        return {
+            "message": "ISE Occurred, Please Try Again Later"
+        }, 500
 
     return app
 
