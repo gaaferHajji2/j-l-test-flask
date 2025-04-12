@@ -17,6 +17,10 @@ class TagModel(db.Model):
         secondary='items_tags',
     )
 
+    __table_args__ = (
+        db.UniqueConstraint('name', 'store_id', name="tag_name_store_id_uc"),
+    )
+
 
     @classmethod
     def get_tag_by_name(cls, name: str):
