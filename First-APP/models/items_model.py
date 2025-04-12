@@ -40,6 +40,7 @@ class ItemModel(db.Model):
         db.session.add(self)
         db.session.commit()
 
+    # In Real Scenario We Must Also Use Store Id.
     @classmethod
     def get_item_by_name(cls, name):
         return cls.query.filter(ItemModel.name == name).first()
