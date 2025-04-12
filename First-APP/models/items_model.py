@@ -49,8 +49,8 @@ class ItemModel(db.Model):
     def get_item_by_id(cls, item_id: int):
         # return cls.query.get(item_id);
         return cls.query.get_or_404(item_id, 
-        
-        description=f"No Data Found for ID: {item_id}")
+            description=f"No Data Found for ID: {item_id}"
+        )
 
     @classmethod
     def get_all_items_in_db(cls):

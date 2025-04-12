@@ -18,8 +18,8 @@ class ItemResource(MethodView):
     def get(self, item_id):
         item_data = ItemModel.get_item_by_id(item_id)
     
-        if not item_data:
-            abort(404, {"message": f"No Item Found For ID {item_id}"})
+        # if not item_data:
+        #     abort(404, {"message": f"No Item Found For ID {item_id}"})
 
         return item_data
 
