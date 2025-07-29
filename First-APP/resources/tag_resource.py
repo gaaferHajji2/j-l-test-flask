@@ -19,6 +19,8 @@ class TagsInStoreResource(MethodView):
     def get(self, store_id):
         store = StoreModel.get_store_by_id(store_id=store_id)
 
+        # print(f"The Tags is: {store.tags}")
+
         return store.tags.all()
 
     @tag_blp.arguments(TagSchema)
