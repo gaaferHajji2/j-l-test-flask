@@ -1,4 +1,4 @@
-from flask import abort
+from flask import abort, make_response, jsonify
 
 from flask.views import MethodView
 
@@ -15,9 +15,6 @@ class StoreResource(MethodView):
     @store_blueprint.response(status_code=200, schema=StoreSchema)
     def get(self, store_id: int):
         store_obj = StoreModel.get_store_by_id(store_id)
-    
-        if not store_obj:
-            abort(404, {'message': 'No Found Any Data'})
     
         return store_obj
 
@@ -43,8 +40,16 @@ class StoreListResource(MethodView):
     def post(self, payload):        
         store_data = StoreModel(**payload)
 
-        if StoreModel.get_store_by_name(store_data.name):
-            abort(400, description="Duplicate Store Name")
+        t1 = StoreModel.get_store_by_name(store_data.name)
+
+        print(t1)
+
+        if t1:
+            abort(
+                make_response(
+                    jsonify({"message": "Duplicate store name!"}),
+            400  # HTTP status code
+        ))
         
         store_data.add_store_data_to_db()
 

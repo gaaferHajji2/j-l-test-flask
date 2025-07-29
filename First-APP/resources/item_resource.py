@@ -8,6 +8,7 @@ from flask_jwt_extended import jwt_required, get_jwt
 
 from models import ItemModel
 
+from models.store_model import StoreModel
 from schemas_shape import ItemSchema
 from schemas_shape import ItemUpdateSchema
 
@@ -57,7 +58,6 @@ class ItemListResource(MethodView):
     def get(self):
         return ItemModel.get_all_items_in_db()
 
-    @jwt_required(fresh=True)
     @item_blueprint.arguments(schema=ItemSchema)
     @item_blueprint.response(status_code=201, schema=ItemSchema)
     def  post(self, payload):
@@ -67,6 +67,8 @@ class ItemListResource(MethodView):
         # The Item Name, not just only the item name.
         if ItemModel.get_item_by_name(item.name):
             abort(400, description="Duplicate Item Name")
+
+        StoreModel.get_store_by_id(item.store_id)
 
         item.add_item_data_to_db()
 

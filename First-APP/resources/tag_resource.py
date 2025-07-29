@@ -26,10 +26,13 @@ class TagsInStoreResource(MethodView):
     def post(self, tag_data, store_id):
         store = StoreModel.get_store_by_id(store_id=store_id)
 
+        if TagModel.get_tag_by_name_and_store_if(tag_data["name"], store_id):
+            abort(401, { "message": "Duplicate Store id with Tag Name"}) 
+
         if TagModel.get_tag_by_name(tag_data['name']):
             abort(401, {"message": "Duplicate Tag Name: {tag_data.name}"})
         
-        tag_model_data = TagModel(**tag_data, store_id=store_id)
+        tag_model_data = TagModel(**tag_data, store_id=store_id) # type: ignore
 
         tag_model_data.save_tag_to_db()
 

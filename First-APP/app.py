@@ -104,7 +104,8 @@ def create_app(db_url=None):
     def unauthorization_callback(error):
         return jsonify({
             "message": "Request doesn't contain an access token",
-            "error": "Authorization Required"
+            "error": "Authorization Required",
+            "error": error
         }), 401
 
     # not working

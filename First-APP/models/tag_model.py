@@ -27,6 +27,10 @@ class TagModel(db.Model):
         return cls.query.filter(TagModel.name == name).first()
 
     @classmethod
+    def get_tag_by_name_and_store_if(cls, name: str, store_id: int):
+        return cls.query.filter(TagModel.name == name, TagModel.store_id == store_id).first()
+
+    @classmethod
     def get_tag_by_id(cls, id: int):
         return cls.query.get_or_404(
             id, 
