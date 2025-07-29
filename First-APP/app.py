@@ -58,7 +58,7 @@ def create_app(db_url=None):
 
     conn = redis.from_url(os.getenv('REDIS_URL') or 'redis://localhost:9379')
 
-    app.queue = Queue("emails", connection=conn)
+    app.queue = Queue("emails", connection=conn) # type: ignore
 
     migrate = Migrate(app=app, db=db)
 
