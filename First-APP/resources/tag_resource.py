@@ -40,7 +40,7 @@ class TagsInStoreResource(MethodView):
         if TagModel.get_tag_by_name(tag_data["name"]):
             # abort({"message": "Duplicate Tag Name: {tag_data.name}"})
             abort(
-                make_response({"message": "Duplicate Tag Name: {tag_data.name}"}, 401),
+                make_response({"message": "Duplicate Tag Name: " + tag_data["name"]}, 401),
             )
 
         tag_model_data = TagModel(**tag_data, store_id=store_id)  # type: ignore
