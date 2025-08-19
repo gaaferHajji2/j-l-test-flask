@@ -34,13 +34,13 @@ class UserRegisterResource(MethodView):
             abort(409, {"message": "User Already Exists"});
         
         user_model_data = UserModel(
-            username = payload['username'],
-            password = pbkdf2_sha256.hash(payload['password'])
+            username = payload['username'], # type: ignore
+            password = pbkdf2_sha256.hash(payload['password']) # type: ignore
         );
 
         user_model_data.save_user_data_to_db();
 
-        enqueue_data = current_app.queue.enqueue(
+        enqueue_data = current_app.queue.enqueue( # type: ignore
             send_simple_message, 
             to="gaafer.hajji1995@gmail.com",
             subject="Successfull Register",
