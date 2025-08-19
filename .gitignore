@@ -8,3 +8,5 @@ __pycache__/
 *.mo
 *.pot
 *.mako
+.env
+alembic.ini
