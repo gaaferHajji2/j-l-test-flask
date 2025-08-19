@@ -48,8 +48,9 @@ class StoreListResource(MethodView):
             abort(
                 make_response(
                     jsonify({"message": "Duplicate store name!"}),
-            400  # HTTP status code
-        ))
+                    400  # HTTP status code
+                ),
+            ); # type: ignore
         
         store_data.add_store_data_to_db()
 
